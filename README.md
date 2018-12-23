@@ -15,5 +15,7 @@ The network is asked to generate 2 art styles at the same time.
 ## To train your own network
 
 Download wikipaintings at www.lamsade.dauphine.fr/~bnegrevergne/webpage/software/rasta/wikipaintings_full.tgz.
+
 Update the data path in main_art_wgan.py
+
 Run the command `python main_art_wgan.py`
