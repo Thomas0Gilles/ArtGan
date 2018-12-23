@@ -6,3 +6,7 @@ The networks are trained to not only learn the dataset distribution, but also be
 
 ## Example of generated art
 ![Batch of Abstract Landscapes](https://github.com/Thomas0Gilles/ArtGan/blob/master/art_wgan_100.png)
+
+## Mixing of different art style generated
+
+The network is asked to generate 2 art styles at the same time.
