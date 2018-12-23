@@ -14,6 +14,16 @@ The network is asked to generate 2 art styles at the same time.
 
 ## To train your own network
 
+### MNIST
+
+Run `python main_mnist.py` for DC-GAN or `python main_mnist_wgan.py` for wgan.
+
+### CIFAR-10
+
+Run `python main_cifar.py` for DC-GAN or `python main_cifar_wgan.py` for wgan.
+
+### WikiArt
+
 Download wikipaintings at www.lamsade.dauphine.fr/~bnegrevergne/webpage/software/rasta/wikipaintings_full.tgz.
 
 Update the data path in main_art_wgan.py
