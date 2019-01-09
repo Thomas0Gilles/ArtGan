@@ -196,18 +196,20 @@ for i in range(n_epochs):
         plt.figure(figsize=(10, 10))
    #     noise_disp = np.random.randn(examples, noise_dim)
         #noise = np.random.uniform(-1.0, 1.0, size=[examples, noise_dim])
-        #noise = np.random.randn(examples, noise_dim)
+#        noise_disp = np.random.randn(1, noise_dim)
+#        noise_disp = np.tile(noise_disp, (examples,1))
         labels = np.unique(y_train)
-    #    l = labels.reshape(-1, 1)
-    #    l = np.tile(l, 10)
-    #    l = l.reshape(100)
-    #    labels = np.tile(labels, 10)
+        dim = int(np.sqrt(nb_select))
+#        l = labels.reshape(-1, 1)
+#        l = np.tile(l, dim)
+#        l = l.reshape(examples)
+        labels = np.tile(labels, dim)
         labels = to_categorical(labels, num_classes = n_labels)
     #    l = to_categorical(l)
     #    labels = labels+l
         images = gen.predict([noise_disp, labels], batch_size=batch_size)
         images = images.reshape(-1, target_size[0],target_size[1], 3)
-        dim = int(np.sqrt(nb_select))
+        
         for i in range(images.shape[0]):
             ax=plt.subplot(dim, dim, i+1)
             #ax.title.set_text(classes[i][1], fontsize=5)
@@ -231,3 +233,28 @@ for i in range(n_epochs):
 #        plt.pause(0.05)
         
 stop_event.set()
+
+plt.figure(figsize=(20, 20))
+examples=81
+noise = np.random.randn(examples, noise_dim)
+labels = np.arange(9)
+l = labels.reshape(-1, 1)
+l = np.tile(l, 9)
+l = l.reshape(81)
+labels = np.tile(labels, 9)
+labels = to_categorical(labels)
+l = to_categorical(l)
+labels = (labels+l)/2
+images = gen.predict([noise, labels], batch_size=batch_size)
+images = images.reshape(-1, target_size[0],target_size[1], 3)
+for i in range(images.shape[0]):
+    ax=plt.subplot(9, 9, i+1)
+    if i//9==0:
+        ax.set_title(classes[arg[i%9]][1], fontsize=5)
+    if i%9==0:
+        plt.set_ylabel(classes[arg[i//9]][1])
+    plt.imshow((images[i]+1)/2, interpolation='nearest', cmap='gray_r')
+    plt.axis('off')
+plt.tight_layout()
+plt.show()
+plt.pause(0.05)
